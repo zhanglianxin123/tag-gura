@@ -1,0 +1,34 @@
+{
+    "message1": {
+    "message": "idle tabs",
+    "description": "idle tabs"
+  },
+  "house":{
+    "message": "house",
+    "description": "house"
+  },
+  "minute":{
+    "message":"minute",
+    "description":"minute"   
+  },
+  "day":{
+    "message":"day",
+    "description":"day"   
+  },
+  "clean_memory":{
+    "message":"clean memory",
+    "description":"clean memory"   
+},
+  "idle":{
+    "message":"idle",
+    "description":"idle"   
+  },
+  "open":{
+    "message":"open",
+    "description":"open"   
+  },
+  "close":{
+    "message":"close",
+    "description":"close"   
+  }
+}

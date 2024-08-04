@@ -1,24 +1,45 @@
-import { useState } from "react"
+import React, { useEffect, useState } from 'react';
 
 function IndexPopup() {
-  const [data, setData] = useState("")
+//   const sync = require('sync');
+// const fs = require('fs');
+// const tabs = sync.Wait(chrome.tabs.query({}))
+const t =chrome.runtime.getURL('tabs/tab_manage.html')
 
-  return (
-    <div
-      style={{
-        padding: 16
-      }}>
-      <h2>
-        Welcome to your{" "}
-        <a href="https://www.plasmo.com" target="_blank">
-          Plasmo
-        </a>{" "}
-        Extension!
-      </h2>
-      <input onChange={(e) => setData(e.target.value)} value={data} />
-      <a href="https://docs.plasmo.com" target="_blank">
-        View Docs
-      </a>
+useEffect(() => {
+  async function getData() {
+    const t =chrome.runtime.getURL('tabs/tab_manage.html')
+    const tabs = await chrome.tabs.query({});
+    var urls = '';
+    var flag = false
+    var id;
+    tabs.map(
+      (tab) =>{
+        urls = urls+tab.url
+        console.log("url:"+tab.url)
+        if (tab.url == t){
+          id = tab.id
+          flag = true
+          
+        }
+      }
+    )
+    if (flag) {
+      await chrome.tabs.update(id,{active:true})
+      return 
+    }
+    // return <p>{urls}</p>
+
+   
+    const new_tab= chrome.tabs.create({url: t,active: true,pinned: true})
+
+  }
+
+  getData();
+}, []);
+
+  return (<div>
+    <a href={t} target="_blank">to</a>
     </div>
   )
 }

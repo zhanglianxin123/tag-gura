@@ -1,4 +1,15 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+# This is a browser extension developed using the plasmo framework
+- Manage tags
+- You can call the Chrome API to manage tags
+- Call the Chrome API to discard tags at regular intervals to optimize memory usage
+
+## Installation
+- Download the archive
+- Unzip the zip package
+- Open the Chrome browser
+- Open the extension management page
+- Enable developer mode
+- Load the unzipped extension
 
 ## Getting Started
 
