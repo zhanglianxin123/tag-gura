@@ -1,3 +1,4 @@
+[English](README.md)|[中文](README.zh_cn.md)
 # This is a browser extension developed using the plasmo framework
 - Manage tags
 - You can call the Chrome API to manage tags
