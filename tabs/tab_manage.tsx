@@ -220,11 +220,11 @@ function DeltaFlyerPage() {
         justifyContent: 'space-between',
 
       }}>
-        <div style={{ width: 240 }}>
+        <div style={{ width: 260 }}>
           <span>
-            超过 {time_value} {level_value}闲置标签
+            超过 <span style={{color: '#367bf6', fontSize: 18}}>{time_value} {level_value}</span> 闲置标签
           </span>
-          <EditOutlined style={{ marginLeft: 10 }} onClick={
+          <EditOutlined style={{ marginLeft: 10,color: '#b3b3ad' }} onClick={
             () => {
               setOpen(true);
             }
@@ -274,7 +274,7 @@ function DeltaFlyerPage() {
               </Dropdown>
             </div>
           </Modal>
-          <Switch defaultChecked={switch_value} style={{ marginLeft: 10 }} checkedChildren="开启" unCheckedChildren="关闭" onChange={async (check) => {
+          <Switch  defaultChecked={switch_value} style={{ marginLeft: 10 }} checkedChildren="开启" unCheckedChildren="关闭" onChange={async (check) => {
             setSwitchValue(check);
 
             if (check) {///开启定时器
@@ -286,12 +286,13 @@ function DeltaFlyerPage() {
                 clearInterval(intervalRef.current);
               }
             }
-            console.log(check);
           }} />
         </div>
 
         <div >
-          <Button onClick={() => {
+          <Button  style={{
+            backgroundColor: "#f5f5f5"
+          }} onClick={() => {
             data.map(item => {
               if (item.discarded !== true && item.title !== undefined && item.active !== true) {
                 chrome.tabs.discard(item.id, (isDiscarded) => {
@@ -303,7 +304,7 @@ function DeltaFlyerPage() {
               return item;
             })
             setData(data);
-          }}>清理内存</Button>
+          }}><span style={{color:'#5c6c6c'}}>清理内存</span></Button>
         </div>
 
 
@@ -319,37 +320,6 @@ function DeltaFlyerPage() {
         }}
       >
         <div>
-          {console.log(data)}
-          {/* {
-            data.map((item, index) => (
-              <div key={index}>
-                <h3>{item.title}</h3>
-                {
-                  item.discarded !== true ? <div><p>Last accessed: {new Date(item.lastAccessed).toLocaleString()}</p><Button onClick={() => {
-                    if (item.discarded !== true) {
-                      chrome.tabs.discard(item.id, (isDiscarded) => {
-                        console.log(isDiscarded);
-                      });
-                      var newData = data.map(tab => {
-                        if (tab.id === item.id) {
-                          tab.discarded = true;
-                        }
-                        return tab;
-                      });
-                      setData(newData);
-
-                      // setData(data.filter(tab => tab.id !== item.id));
-                    }
-                  }}>
-                    Close
-                  </Button></div> : <div></div>
-                }
-
-
-              </div>
-            ))
-          } */}
-          {/* 遍历mapData */}
           {
             Object.keys(mapData).map(windowId => (
               <div key={windowId} style={{ marginTop: 10 }}>
@@ -372,14 +342,14 @@ function DeltaFlyerPage() {
                               chrome.tabs.remove(item.id);
                               var newData = data.filter(tab => tab.id !== item.id);
                               setData(newData);
-                             }} /> : <div style={{ marginRight: 20 }}></div>}
+                             }} /> : <div style={{ marginRight: 28 }}></div>}
                           </div>
 
                           <Image src={item.favIconUrl} width={16} height={16} />
                           <span style={{ marginLeft: 10 }} onClick={()=>{
                             chrome.tabs.update(item.id, {active: true});
                           }}>{item.title}</span> </div>{item.discarded !== true ?
-                            <div style={{}}><Button onClick={() => {
+                            <div style={{}}><Button style={{backgroundColor:'#f5f5f5'}} onClick={() => {
                               if (item.discarded !== true) {
                                 chrome.tabs.discard(item.id, (isDiscarded) => {
                                   console.log(isDiscarded);
@@ -393,7 +363,7 @@ function DeltaFlyerPage() {
                                 setData(newData);
 
                               }
-                            }}>闲置</Button></div> : <div></div>}
+                            }}><span style={{color:'#5c5c5c'}}>闲置</span></Button></div> : <div></div>}
                       </div>
                     </List.Item>
                   )}
